@@ -32,3 +32,26 @@ function getHumanChoice() {
         alert("That isn't a valid move in Rock Paper Scissors!");
     }
 }
+
+function playRound(humanChoice, computerChoice) {
+    humanChoice = humanChoice.toLowerCase();
+
+    const computerWinMessage = `You lose! ${computerChoice} beats ${humanChoice}`;
+
+    const humanWinMessage = `You win! ${humanChoice} beats ${computerChoice}`;
+
+    if (humanChoice === computerChoice) {
+        console.log("It's a tie!");
+    } else if (humanChoice === "rock") {
+        computerChoice === "paper" ? console.log(computerWinMessage) : console.log(humanWinMessage);
+    } else if (humanChoice === "paper") {
+        computerChoice === "rock" ? console.log(humanWinMessage) : console.log(computerWinMessage);
+    } else if (humanChoice === "scissors") {
+        computerChoice === "rock" ? console.log(computerWinMessage) : console.log(humanWinMessage);
+    }
+}
+
+const humanSelection = getHumanChoice();
+const computerSelection = getComputerChoice();
+
+playRound(humanSelection, computerSelection);
