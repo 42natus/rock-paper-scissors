@@ -36,6 +36,9 @@ function getHumanChoice() {
 function playRound(humanChoice, computerChoice) {
     humanChoice = humanChoice.toLowerCase();
 
+    let humanScore = 0;
+    let computerScore = 0;
+
     const computerWinMessage = `You lose! ${computerChoice} beats ${humanChoice}`;
 
     const humanWinMessage = `You win! ${humanChoice} beats ${computerChoice}`;
@@ -43,12 +46,31 @@ function playRound(humanChoice, computerChoice) {
     if (humanChoice === computerChoice) {
         console.log("It's a tie!");
     } else if (humanChoice === "rock") {
-        computerChoice === "paper" ? console.log(computerWinMessage) : console.log(humanWinMessage);
+        if (computerChoice === "paper") {
+            ++computerScore;
+            console.log(computerWinMessage);
+        } else {
+            ++humanScore;
+            console.log(humanWinMessage);
+        }
     } else if (humanChoice === "paper") {
-        computerChoice === "rock" ? console.log(humanWinMessage) : console.log(computerWinMessage);
+        if (computerChoice === "rock") {
+            ++humanScore;
+            console.log(humanWinMessage)  
+        } else {
+            ++computerScore;
+            console.log(computerWinMessage);
+        }
     } else if (humanChoice === "scissors") {
-        computerChoice === "rock" ? console.log(computerWinMessage) : console.log(humanWinMessage);
+        if (computerChoice === "rock") {
+            ++computerScore;
+            console.log(computerWinMessage)
+        } else {
+            ++humanScore;
+            console.log(humanWinMessage);
+        }
     }
+    // console.log(`Your score: ${humanScore}\nComputer score: ${computerScore}`); // check that the scores are incrementing as expected
 }
 
 const humanSelection = getHumanChoice();
