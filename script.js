@@ -1,16 +1,17 @@
-const humanScore = 0;
-const computerScore = 0;
+let humanScore = 0;
+let computerScore = 0;
 
-console.log(computerScore, humanScore);
 function getComputerChoice() {
-    let computerRandomNumber;
-    let computerChoice;
+    let computerRandomNumber;   // store generated random number
+    let computerChoice; // computer's move based on generated random number
 
-    // generate a random number to select one of the three game choices
+    // generate a random number from 0 - 9 to select one of the three game choices
     computerRandomNumber = Math.floor(Math.random() * 10);
+
+    // assign 3 groups of numbers within the range 0 - 9 to each valid move in Rock Paper Scissors
     if (computerRandomNumber <= 3) {
         computerChoice = "rock";
-    } else if (computerRandomNumber >= 4 && computerRandomNumber <= 7) {
+    } else if (computerRandomNumber >= 4 && computerRandomNumber <= 6) {
         computerChoice = "paper";
     } else {
         computerChoice = "scissors";
@@ -20,37 +21,33 @@ function getComputerChoice() {
 }
 
 function getHumanChoice() {
-    let humanChoiceInput;
-    let initialHumanInput = prompt("Your move\n(Enter 'rock', 'paper', or 'scissors'): ", "rock");
+    let humanChoice = prompt("Your move:\n(Enter 'rock', 'paper', or 'scissors')", "rock");  
 
-    if (initialHumanInput.toLowerCase() === "rock" 
-    || initialHumanInput.toLowerCase() === "paper"
-    || initialHumanInput.toLowerCase() === "scissors") {
-        humanChoiceInput = initialHumanInput;
-        return humanChoiceInput;
-    } else {
+    // validate human player's move
+    if (humanChoice.toLowerCase() === "rock" 
+    || humanChoice.toLowerCase() === "paper"
+    || humanChoice.toLowerCase() === "scissors") {
+        humanChoice = humanChoice.toLowerCase();    // make humanChoice case-insensitive
+        return humanChoice;
+    } else {    // invalid move
         alert("That isn't a valid move in Rock Paper Scissors!");
     }
 }
 
 function playRound(humanChoice, computerChoice) {
-    humanChoice = humanChoice.toLowerCase();
-
-    let humanScore = 0;
-    let computerScore = 0;
-
+    // messages to be displayed when the player either wins or loses
     const computerWinMessage = `You lose! ${computerChoice} beats ${humanChoice}`;
-
     const humanWinMessage = `You win! ${humanChoice} beats ${computerChoice}`;
 
-    if (humanChoice === computerChoice) {
+    // logic for gameplay
+    if (humanChoice === computerChoice) {   // handle ties explicitly
         console.log("It's a tie!");
     } else if (humanChoice === "rock") {
         if (computerChoice === "paper") {
-            ++computerScore;
+            ++computerScore;    // computer wins, increment score
             console.log(computerWinMessage);
         } else {
-            ++humanScore;
+            ++humanScore;   // human player wins, increment score
             console.log(humanWinMessage);
         }
     } else if (humanChoice === "paper") {
@@ -70,8 +67,11 @@ function playRound(humanChoice, computerChoice) {
             console.log(humanWinMessage);
         }
     }
-    // console.log(`Your score: ${humanScore}\nComputer score: ${computerScore}`); // check that the scores are incrementing as expected
+    // display round scores
+    console.log(`Your score: ${humanScore}\nComputer score: ${computerScore}`);
 }
+
+function playGame() {}
 
 const humanSelection = getHumanChoice();
 const computerSelection = getComputerChoice();
